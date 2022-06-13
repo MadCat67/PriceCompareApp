@@ -6,21 +6,29 @@ function App() {
   const [Value, setValue] = useState('null')
   const [Image, setImage] = useState()
   const [cPrice, setCprice] = useState('null')
+  const [test, setTest] = useState('none')
 
+  async function FetchTest(){
+    setTest('starting')
+    const Res = await fetch('/test')
+    const Data = await Res.json()
+    setTest('Done')
+    setTest(Data.name)
+  }
 
   async function sendData(){
     if(Item.current.value === '') return
     setValue('loading results...')
     setCprice('loading results...')
     setImage(null)
-      fetch(`https://find-cheap-prices.herokuapp.com/post`, {
+      fetch(`/post`, {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
             Item : Item.current.value
           })
       })
-      const response = await fetch(`https://find-cheap-prices.herokuapp.com/scrape`)
+      const response = await fetch(`/scrape`)
       const data = await response.json()
       setValue(data.average)
       setImage(data.image)
@@ -43,6 +51,8 @@ function App() {
         <p class='result'> Cheapest price for item: {cPrice}</p>
         </div>
       </div>
+      <p>{test}</p>
+      <button onClick={FetchTest}> Test </button>
     </div>
   )
 }

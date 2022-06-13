@@ -31,6 +31,10 @@ app.get('/scrape', async (req, res) => {
     res.json(FinalValues)
 })
 
+app.get('/test', (req, res) => {
+    res.json({name : 'john', id: '1234'})
+})
+
 //web scraper
 async function scrapeProduct(url){
     const browser = await puppeteer.launch()
