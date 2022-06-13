@@ -2,7 +2,6 @@ import React,{useState, useRef} from 'react';
 import './App.css';
 
 function App() {
-  const port = process.env.PORT || 4000
   const Item = useRef()
   const [Value, setValue] = useState('null')
   const [Image, setImage] = useState()
