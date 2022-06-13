@@ -14,14 +14,14 @@ function App() {
     setValue('loading results...')
     setCprice('loading results...')
     setImage(null)
-      fetch(`http://localhost:${port}/post`, {
+      fetch(`/post`, {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
             Item : Item.current.value
           })
       })
-      const response = await fetch(`http://localhost:${port}/`)
+      const response = await fetch(`/`)
       const data = await response.json()
       setValue(data.average)
       setImage(data.image)
