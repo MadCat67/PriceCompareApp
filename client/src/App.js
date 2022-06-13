@@ -13,14 +13,14 @@ function App() {
     setValue('loading results...')
     setCprice('loading results...')
     setImage(null)
-      fetch(`https://find-cheap-prices.herokuapp.com:${process.env.PORT}/post`, {
+      fetch(`https://find-cheap-prices.herokuapp.com/post`, {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
             Item : Item.current.value
           })
       })
-      const response = await fetch(`https://find-cheap-prices.herokuapp.com:${process.env.PORT}/`)
+      const response = await fetch(`https://find-cheap-prices.herokuapp.com/scrape`)
       const data = await response.json()
       setValue(data.average)
       setImage(data.image)

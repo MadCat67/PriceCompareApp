@@ -6,7 +6,7 @@ const cors = require('cors')
 const path = require('path')
 
 //allos GET and POST with react app
-app.use(cors({origin: 'http://localhost:3000'}))
+app.use(cors())
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 const port = process.env.PORT || 4000
@@ -26,7 +26,7 @@ app.post('/post', (req, res) => {
     Item = req.body.Item 
 })
 
-app.get('/', async (req, res) => {
+app.get('/scrape', async (req, res) => {
     await scrapeProduct('https://www.amazon.com/ref=nav_logo')
     res.json(FinalValues)
 })
