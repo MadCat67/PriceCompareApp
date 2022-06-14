@@ -6,6 +6,14 @@ function App() {
   const [Value, setValue] = useState('null')
   const [Image, setImage] = useState()
   const [cPrice, setCprice] = useState('null')
+  const [test, setTest] = useState('none')
+
+  async function FetchTest(){
+    setTest('starting')
+    const Res = await fetch('/test')
+    const Data = await Res.json()
+    setTest(Data)
+  }
 
   async function sendData(){
     if(Item.current.value === '') return
