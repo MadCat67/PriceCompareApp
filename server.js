@@ -4,11 +4,12 @@ const app = express()
 const puppeteer = require('puppeteer')
 const cors = require('cors')
 const path = require('path')
+const bodyParser = require("body-parser")
 
 //allos GET and POST with react app
 app.use(cors())
+app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
-app.use(express.json())
 const port = process.env.PORT || 4000
 let FinalValues = {}
 let Item = null
@@ -32,7 +33,7 @@ app.get('/scrape', async (req, res) => {
 })
 
 app.get('/test', (req, res) => {
-    res.json({name : 'john', id: '1234'})
+    res.json('Hello World')
 })
 
 //web scraper

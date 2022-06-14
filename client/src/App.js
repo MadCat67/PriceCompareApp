@@ -12,8 +12,7 @@ function App() {
     setTest('starting')
     const Res = await fetch('/test')
     const Data = await Res.json()
-    setTest('Done')
-    setTest(Data.name)
+    setTest(Data)
   }
 
   async function sendData(){
