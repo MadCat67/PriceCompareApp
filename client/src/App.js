@@ -12,26 +12,8 @@ function App() {
     setTest('starting')
     const Res = await fetch('/test')
     const Data = await Res.json()
+    setTest('DONEEEE')
     setTest(Data)
-  }
-
-  async function sendData(){
-    if(Item.current.value === '') return
-    setValue('loading results...')
-    setCprice('loading results...')
-    setImage(null)
-      fetch(`/post`, {
-          method: 'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({
-            Item : Item.current.value
-          })
-      })
-      const response = await fetch(`/scrape`)
-      const data = await response.json()
-      setValue(data.average)
-      setImage(data.image)
-      setCprice(data.cheapestPrice)
   }
 
   return (
