@@ -8,6 +8,25 @@ function App() {
   const [cPrice, setCprice] = useState('null')
   const [test, setTest] = useState('none')
 
+  function TestPost(){
+    setTest('starting test post')
+    fetch(`/tpost`, {
+          method: 'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            message: 'It works'
+          })
+      })
+    setTest('ended test post')
+  }
+
+  async function TestGet(){
+    setTest('starting test get')
+    const R = await fetch('/tget')
+    const D = await R.json()
+    setTest(D)
+  }
+
   async function FetchTest(){
     setTest('starting')
     const Res = await fetch('/test')
@@ -37,21 +56,23 @@ function App() {
   return (
     <div>
       <h1>Search for an Item on Amazon and find its average price</h1>
-      <div class='inputs'>
+      <div className='inputs'>
         <div>
-          <input class="txtBar" type='text' placeholder="search for a item" ref={Item}/>
-          <button class="btn" onClick={sendData}>Search</button>
+          <input className="txtBar" type='text' placeholder="search for a item" ref={Item}/>
+          <button className="btn" onClick={sendData}>Search</button>
         </div>
       </div>
-      <div class='inputs'>
+      <div className='inputs'>
         <div>
-        <img class='image' src={`${Image}`} alt='ScrapedImage'/>
-        <p class='result'>Average price of Amazon item: {Value}</p>
-        <p class='result'> Cheapest price for item: {cPrice}</p>
+        <img className='image' src={`${Image}`} alt='ScrapedImage'/>
+        <p className='result'>Average price of Amazon item: {Value}</p>
+        <p className='result'> Cheapest price for item: {cPrice}</p>
         </div>
       </div>
       <p>{test}</p>
       <button onClick={FetchTest}> Test </button>
+      <button onClick={TestPost}> Test Post </button>
+      <button onClick={TestGet}> Test Get </button>
     </div>
   )
 }

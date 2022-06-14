@@ -13,10 +13,19 @@ app.use(express.urlencoded({extended: false}))
 const port = process.env.PORT || 4000
 let FinalValues = {}
 let Item = null
+let Tmessage = ''
 
 //simple routes
 app.post('/post', (req, res) => {
     Item = req.body.Item 
+})
+
+app.post('/tpost', (req, res) => {
+    Tmessage = req.body.message
+})
+
+app.get('/tget', (req, res) => {
+   res.json(Tmessage)
 })
 
 app.get('/scrape', async (req, res) => {
