@@ -39,7 +39,10 @@ app.get('/test', (req, res) => {
 
 //web scraper
 async function scrapeProduct(url){
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox']
+    })
     const page = await browser.newPage()
     await page.goto(url)
     await page.type('#twotabsearchtextbox',Item)
