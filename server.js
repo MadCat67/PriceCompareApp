@@ -20,10 +20,6 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'))
     })
-
-    app.get('/test', (req, res) => {
-        res.json('Hello World')
-    })
 }
 
 //simple routes
@@ -34,6 +30,10 @@ app.post('/post', (req, res) => {
 app.get('/scrape', async (req, res) => {
     await scrapeProduct('https://www.amazon.com/ref=nav_logo')
     res.json(FinalValues)
+})
+
+app.get('/test', (req, res) => {
+    res.json('Hello World')
 })
 
 //web scraper
