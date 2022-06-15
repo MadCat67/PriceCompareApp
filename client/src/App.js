@@ -6,33 +6,6 @@ function App() {
   const [Value, setValue] = useState('null')
   const [Image, setImage] = useState()
   const [cPrice, setCprice] = useState('null')
-  const [test, setTest] = useState('none')
-
-  function TestPost(){
-    setTest('starting test post')
-    fetch(`/tpost`, {
-          method: 'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({
-            message: 'It works'
-          })
-      })
-    setTest('ended test post')
-  }
-
-  async function TestGet(){
-    setTest('starting test get')
-    const R = await fetch('/tget')
-    const D = await R.json()
-    setTest(D)
-  }
-
-  async function FetchTest(){
-    setTest('starting')
-    const Res = await fetch('/test')
-    const Data = await Res.json()
-    setTest(Data)
-  }
 
   async function sendData(){
     if(Item.current.value === '') return
@@ -64,15 +37,11 @@ function App() {
       </div>
       <div className='inputs'>
         <div>
-        <img className='image' src={`${Image}`} alt='ScrapedImage'/>
-        <p className='result'>Average price of Amazon item: {Value}</p>
-        <p className='result'> Cheapest price for item: {cPrice}</p>
+        <img className='image' src={`${Image}`} alt='product' />
+        <p className='result'>Average price of Amazon item: ${Value}</p>
+        <p className='result'> Cheapest price for item: ${cPrice}</p>
         </div>
       </div>
-      <p>{test}</p>
-      <button onClick={FetchTest}> Test </button>
-      <button onClick={TestPost}> Test Post </button>
-      <button onClick={TestGet}> Test Get </button>
     </div>
   )
 }

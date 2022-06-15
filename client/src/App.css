@@ -1,6 +1,6 @@
 h1{
   text-align: center;
-  font-size: 30px;
+  font-size: 4vw;
   color: cadetblue;
 }
 
@@ -10,16 +10,18 @@ h1{
 }
 
 .txtBar{
-  width: 400px;
-  height: 40px;
-  font-size: 20px;
+  width: 40vw;
+  height: 4vw;
+  font-size: 3vw;
   background-color: ghostwhite;
 }
 
 .btn{
   margin-left: 10px;
-  width: 80px;
-  height: 40px;
+  width: 10vw;
+  max-width: 100px;
+  height: 5vw;
+  max-height: 50px;
   background-color: tomato;
   border: none;
   border-radius: 20px;
@@ -33,5 +35,5 @@ h1{
 }
 
 .result{
-  font-size: 2.5vw;
+  font-size: 3vw;
 }
