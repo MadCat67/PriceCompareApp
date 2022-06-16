@@ -24,9 +24,9 @@ function App() {
       const data = await response.json()
       setValues({
         Pic: data.image,
-        smallest: data.cheapestPrice,
-        largest: data.largestPrice,
-        average: data.average
+        smallest: '$' + data.cheapestPrice,
+        largest: '$' + data.largestPrice,
+        average: '$' + data.average
       })
   }
 
@@ -43,7 +43,7 @@ function App() {
         <div>
         <img className='image' src={`${values.Pic}`} alt='product' />
         <p className='result'>Average price for item: {values.average}</p>
-        <p className='result'> Smallest price for item: {values.smallest}</p>
+        <p className='result'> Lowest price for item: {values.smallest}</p>
         <p className='result'> Largest price for item: {values.largest}</p>
         </div>
       </div>
