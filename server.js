@@ -50,6 +50,7 @@ async function scrapeProduct(url){
     const IntArr = wholePrices.map(item => parseInt(item))
     IntArr.splice(IntArr.length - 1, 1)
     FinalValues.cheapestPrice = Math.min(...IntArr)
+    FinalValues.largestPrice = Math.max(...IntArr)
     
     await browser.close()
 }

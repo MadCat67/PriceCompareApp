@@ -3,15 +3,16 @@ import './App.css';
 
 function App() {
   const Item = useRef()
-  const [Value, setValue] = useState('null')
-  const [Image, setImage] = useState()
-  const [cPrice, setCprice] = useState('null')
+  const [values, setValues] = useState({Pic: 'null', smallest: 'null', largest: 'null', average: 'null'})
 
   async function sendData(){
     if(Item.current.value === '') return
-    setValue('loading results...')
-    setCprice('loading results...')
-    setImage(null)
+    setValues({
+      smallest: 'loading results...',
+      largest: 'loading results...',
+      average: 'loading results...'
+    }
+    )
       fetch(`/post`, {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
@@ -21,9 +22,12 @@ function App() {
       })
       const response = await fetch(`/scrape`)
       const data = await response.json()
-      setValue(data.average)
-      setImage(data.image)
-      setCprice(data.cheapestPrice)
+      setValues({
+        Pic: data.image,
+        smallest: data.cheapestPrice,
+        largest: data.largestPrice,
+        average: data.average
+      })
   }
 
   return (
@@ -37,9 +41,10 @@ function App() {
       </div>
       <div className='inputs'>
         <div>
-        <img className='image' src={`${Image}`} alt='product' />
-        <p className='result'>Average price of Amazon item: ${Value}</p>
-        <p className='result'> Cheapest price for item: ${cPrice}</p>
+        <img className='image' src={`${values.Pic}`} alt='product' />
+        <p className='result'>Average price for item: {values.average}</p>
+        <p className='result'> Smallest price for item: {values.smallest}</p>
+        <p className='result'> Largest price for item: {values.largest}</p>
         </div>
       </div>
     </div>

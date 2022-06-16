@@ -2,6 +2,8 @@ h1{
   text-align: center;
   font-size: 4vw;
   color: cadetblue;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
 .inputs{
@@ -16,6 +18,10 @@ h1{
   background-color: ghostwhite;
 }
 
+.txtBar:focus{
+  outline: 0;
+}
+
 .btn{
   margin-left: 10px;
   width: 10vw;
@@ -26,8 +32,13 @@ h1{
   border: none;
   border-radius: 20px;
   border-color: cornsilk;
-  font-size: 13px;
+  font-size: 2vw;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn:active{
+  color: black;
+  background-color: rgb(230, 70, 40);
 }
 
 .image{
@@ -35,5 +46,29 @@ h1{
 }
 
 .result{
-  font-size: 3vw;
+  font-size: 5vw;
+}
+
+@media (orientation: portrait) {
+  .btn{
+    width: 16vw;
+    max-width: 120px;
+    height: 8vw;
+    max-height: 60px;
+    font-size: 3.2vw;
+    position: relative;
+    bottom: 1.8px;
+  }
+
+  .txtBar{
+    width: 70vw;
+    height: 7vw;
+    font-size: 4vw;
+    background-color: ghostwhite;
+    margin-bottom: 15px;
+  }
+
+  h1{
+    font-size: 7vw;
+  }
 }
