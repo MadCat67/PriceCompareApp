@@ -3,7 +3,8 @@ import './App.css';
 
 function App() {
   const Item = useRef()
-  const [values, setValues] = useState({Pic: 'null', smallest: 'null', largest: 'null', average: 'null'})
+  const [values, setValues] = useState({Pic: 'null', smallest: 'null',
+  largest: 'null', average: 'null', LowLink: null, HighLink: null})
 
   async function sendData(){
     if(Item.current.value === '') return
@@ -13,26 +14,28 @@ function App() {
       average: 'loading results...'
     }
     )
-      fetch(`/post`, {
+      fetch(`http://localhost:5000/post`, {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
             Item : Item.current.value
           })
       })
-      const response = await fetch(`/scrape`)
+      const response = await fetch(`http://localhost:5000/scrape`)
       const data = await response.json()
       setValues({
         Pic: data.image,
         smallest: '$' + data.cheapestPrice,
         largest: '$' + data.largestPrice,
-        average: '$' + data.average
+        average: '$' + data.average,
+        LowLink: `${data.LowLink}`,
+        HighLink: `${data.HighLink}`
       })
   }
 
   return (
     <div>
-      <h1>Search for an Item on Amazon and find its average price</h1>
+      <h1>Search for an Item on Amazon and find it's average, highest, and lowest price</h1>
       <div className='inputs'>
         <div>
           <input className="txtBar" type='text' placeholder="search for a item" ref={Item}/>
@@ -44,7 +47,9 @@ function App() {
         <img className='image' src={`${values.Pic}`} alt='product' />
         <p className='result'>Average price for item: {values.average}</p>
         <p className='result'> Lowest price for item: {values.smallest}</p>
-        <p className='result'> Largest price for item: {values.largest}</p>
+        <a className='result' href= {values.LowLink}> Link to lowest product </a>
+        <p className='result'> Highest price for item: {values.largest}</p>
+        <a className='result' href= {values.HighLink}> Link to highest product </a>
         </div>
       </div>
     </div>
