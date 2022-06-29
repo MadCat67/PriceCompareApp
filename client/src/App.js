@@ -14,14 +14,14 @@ function App() {
       average: 'loading results...'
     }
     )
-      fetch(`http://localhost:5000/post`, {
+      fetch(`/post`, {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
             Item : Item.current.value
           })
       })
-      const response = await fetch(`http://localhost:5000/scrape`)
+      const response = await fetch(`/scrape`)
       const data = await response.json()
       setValues({
         Pic: data.image,
