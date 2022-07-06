@@ -5,7 +5,6 @@ const puppeteer = require('puppeteer')
 const cors = require('cors')
 const path = require('path')
 const bodyParser = require("body-parser")
-const { Agent } = require('http')
 
 //allos GET and POST with react app
 app.use(cors())
