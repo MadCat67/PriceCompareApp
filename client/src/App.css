@@ -48,7 +48,7 @@ h1{
 }
 
 .result{
-  font-size: 2.75vw;
+  font-size: 3vw;
 }
 
 @media (orientation: portrait) {
@@ -72,5 +72,9 @@ h1{
 
   h1{
     font-size: 7vw;
+  }
+
+  .result{
+    font-size: 5vw;
   }
 }
