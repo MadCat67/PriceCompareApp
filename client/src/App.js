@@ -1,27 +1,13 @@
 import React,{useState, useRef} from 'react';
 import './App.css';
 
-interface valTypes{
-  smallest: string;
-  largest: string;
-  average: string;
-  Pic?: any;
-  LowLink?: string;
-  HighLink?: string;
-}
-
 function App() {
-  const Item = useRef<HTMLInputElement>(null)
-  const [values, setValues] = useState<valTypes>({
-    smallest: '',largest: '',
-    average: '',
-    Pic: '',
-    LowLink: '',
-    HighLink: ''
-  })
+  const Item = useRef()
+  const [values, setValues] = useState({Pic: 'null', smallest: 'null',
+  largest: 'null', average: 'null', LowLink: null, HighLink: null})
 
   async function sendData(){
-    if(Item.current?.value === '') return
+    if(Item.current.value === '') return
     setValues({
       smallest: 'loading results...',
       largest: 'loading results...',
@@ -32,7 +18,7 @@ function App() {
           method: 'POST',
           headers:{'Content-Type':'application/json'},
           body: JSON.stringify({
-            Item : Item.current?.value
+            Item : Item.current.value
           })
       })
       const response = await fetch(`/scrape`)
