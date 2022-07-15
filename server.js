@@ -11,6 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
 const port = process.env.PORT || 5000
+const imgArr = [];
 let FinalValues = {}
 let Item = null
 
@@ -26,7 +27,8 @@ app.get('/scrape', async (req, res) => {
 
 //web scraper
 async function scrapeProduct(url){
-    //stuff needed for deployment
+    try {
+            //stuff needed for deployment
     const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox']
@@ -77,6 +79,10 @@ async function scrapeProduct(url){
 
     console.log(FinalValues.LowLink)
     await browser.close()
+    FinalValues.passed = true;
+    } catch {
+    FinalValues.passed = false;
+    }
 }
 
 //serves build file from react /build folder
